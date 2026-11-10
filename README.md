@@ -1,44 +1,42 @@
-<div align="center">
+# junior
 
-# ★ J U N I O R ★
+A modular developer CLI toolkit and zero-config mock REST API server with real-time web inspection and network chaos simulation.
 
-**The Developer Swiss-Army Knife & Zero-Config Mock REST API**
-
-[![CI](https://github.com/rillardian655/Junior/actions/workflows/ci.yml/badge.svg)](https://github.com/rillardian655/Junior/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/rillardian655/Junior/pulls)
-
-*A practical, all-in-one developer companion CLI built to streamline your daily workflow, prevent accidental credential leaks, craft standardized commits, and spin up instant Mock REST APIs with built-in Chaos Engineering controls.*
-
-</div>
 
 ---
 
-## ⚡ Why Junior?
+## Overview
 
-As software engineers, we often juggle multiple small CLI tools, struggle with remembering git syntax, forget to sanitize secret keys before pushing, or need a quick local REST API to test frontend or mobile apps.
+`junior` is an all-in-one developer utility designed to streamline common terminal tasks and accelerate frontend/mobile development:
 
-**`Junior`** consolidates the essential daily tools every developer needs into a single, lightning-fast binary with zero fluff.
+- **Interactive Commit Generator**: Formats commit messages according to Conventional Commits standards with automated staged secret checks.
+- **Credential Leak Scanner**: Scans working trees or staged files for accidentally exposed API keys, tokens, and private keys.
+- **Terminal Cheatsheets**: Offline quick-reference command guides for common tools (`git`, `docker`, `chmod`, `linux`, `curl`, `http`, `regex`) with online fallback.
+- **Code Annotation Inspector**: Aggregates `TODO`, `FIXME`, and `BUG` markers across codebases with exact file line locations.
+- **Repository Metrics**: Analyzes commit counts, active branches, contributors, and lines of code by language.
+- **Mock REST API Server**: Generates complete CRUD endpoints from any JSON file with an integrated web dashboard and latency/error simulation.
 
 ---
 
-## 🚀 Key Features
+## Command Reference
 
 | Command | Description |
 | :--- | :--- |
-| `junior commit` | **Interactive Conventional Commit Maker** — Guides you through commit types, scopes, and checks for accidental secrets before committing. |
-| `junior scan` | **Credential & Secret Leak Detector** — Scans your code and staged files for exposed AWS keys, GitHub tokens, OpenAI keys, private keys, and `.env` files. |
-| `junior cheat <topic>` | **Instant Cheatsheets** — Fast terminal cheatsheet for `git`, `docker`, `chmod`, `linux`, `curl`, `http`, and `regex` with automatic online fallback to `cht.sh`. |
-| `junior todo` | **Annotation Scanner** — Locates and groups `TODO:`, `FIXME:`, `BUG:`, and `HACK:` comments across your entire codebase with line numbers. |
-| `junior stats` | **Project & Git Insights** — Summarizes lines of code (LOC), language distributions, commit counts, and top contributors. |
-| `junior mock [file]` | **Zero-Config Mock REST API** — Spins up instant CRUD endpoints from any JSON file with an interactive real-time Web Dashboard, latency simulation, and chaos error testing. |
+| `junior commit` | Interactive prompt for Conventional Commits with pre-commit secret leak checks. |
+| `junior scan` | Recursively scans codebase for leaked credentials and sensitive files. |
+| `junior cheat <topic>` | Displays quick reference cheatsheets in the terminal. |
+| `junior todo` | Discovers and groups code annotations (`TODO`, `FIXME`, `BUG`, `HACK`). |
+| `junior stats` | Summarizes repository history, lines of code, and language distribution. |
+| `junior mock [file]` | Launches a local REST API server with full CRUD and web dashboard. |
 
 ---
 
-## 📦 Installation & Quick Start
+## Installation
 
-### 1. Clone & Link Locally
+### Local Installation
+
 ```bash
 git clone https://github.com/rillardian655/Junior.git
 cd Junior
@@ -46,49 +44,64 @@ npm install
 npm link
 ```
 
-### 2. Or Run Directly via Node
+Once linked, the `junior` binary is accessible globally in your terminal.
+
+Alternatively, execute directly via `node`:
+
 ```bash
 node bin/junior.js --help
 ```
 
 ---
 
-## 🛠️ Usage Examples
+## Usage Guide
 
-### 1. Interactive Git Commit (`junior commit`)
-Never write messy commit messages again. Enforces [Conventional Commits](https://www.conventionalcommits.org/):
+### 1. Interactive Commit (`junior commit`)
+
+Guides you through commit type selection, optional scope, description, and breaking change flags:
+
 ```bash
 junior commit
 ```
-* Automatically detects unstaged changes and offers to stage them (`git add -A`).
-* Scans staged files for sensitive tokens or keys before committing.
-* Generates standardized messages like `feat(auth): add OAuth2 google login`.
+
+- Prompts to stage unstaged changes (`git add -A`) if no files are currently staged.
+- Runs a security scan on staged files before committing to prevent credential leaks.
+- Produces standardized Conventional Commits (e.g., `feat(auth): add OAuth2 provider`).
 
 ---
 
-### 2. Secret & Token Leak Scanner (`junior scan`)
-Prevent embarrassing and dangerous leaks before they hit GitHub:
+### 2. Secret & Credential Scanner (`junior scan`)
+
+Scans for patterns matching high-entropy secrets and sensitive files:
+
 ```bash
-# Scan whole directory
+# Scan full working directory
 junior scan
 
-# Scan only git staged files (perfect for pre-commit hooks)
+# Scan only files currently staged in git
 junior scan --staged
 ```
-**Detects:**
+
+**Detected secret patterns:**
 - AWS Access Key IDs (`AKIA...`)
 - GitHub Personal Access Tokens (`ghp_...`, `gho_...`)
 - OpenAI API Keys (`sk-...`)
 - Google / Gemini API Keys (`AIza...`)
-- Slack Webhook URLs
-- Private Keys (`BEGIN RSA/OPENSSH PRIVATE KEY`)
-- Sensitive file names accidentally added (`.env`, `id_rsa`, `*.pem`)
+- Stripe Secret Keys (`sk_live_...`)
+- Private key blocks (RSA, OpenSSH, DSA, EC, PGP)
+- Sensitive files (`.env`, `id_rsa`, `*.pem`, `*.key`)
 
 ---
 
-### 3. Instant Terminal Cheatsheet (`junior cheat`)
-No need to open a browser to search for command options:
+### 3. Terminal Cheatsheet (`junior cheat`)
+
+Displays command references without opening a browser:
+
 ```bash
+# List available offline topics
+junior cheat
+
+# View specific cheatsheet
 junior cheat git
 junior cheat docker
 junior cheat chmod
@@ -96,95 +109,132 @@ junior cheat linux
 junior cheat curl
 junior cheat http
 junior cheat regex
+
+# Query any tool or language via cht.sh fallback
+junior cheat rust
 ```
-*Need something else?* Query any command or language directly (e.g. `junior cheat rust` or `junior cheat tar`) and Junior queries community cheatsheets with fallback.
 
 ---
 
-### 4. TODO & Technical Debt Inspector (`junior todo`)
-Find all pending tasks before a sprint review or release:
+### 4. Codebase Annotation Scanner (`junior todo`)
+
+Scans your repository for unresolved technical debt:
+
 ```bash
 junior todo
 ```
+
 Sample output:
+
 ```
 ● Junior Code Annotations & TODO Scanner
-⚠ Found 3 annotation(s) across 2 file(s):
+Found 2 annotation(s) across 2 file(s):
 
   src/server.js
     Line  42: [TODO] Add rate-limiting middleware for auth routes
-    Line  89: [FIXME] Handle edge case when token is malformed
-
   src/auth.js
-    Line  15: [BUG] Session does not expire on password reset
+    Line  15: [FIXME] Token expiration timestamp not enforced
 ```
 
 ---
 
-### 5. Repository Insights & Codebase Metrics (`junior stats`)
-Get instant visibility into your repository:
+### 5. Repository Metrics (`junior stats`)
+
+Provides a summary of codebase composition:
+
 ```bash
 junior stats
 ```
-Displays:
-* Active branch & total commit history
-* Top contributors
-* Total lines of code and percentage breakdown by language (JavaScript, TypeScript, Python, Dart, Rust, etc.)
+
+Output includes active branch, commit history count, contributors list, and a proportional breakdown of lines of code across tracked file formats.
 
 ---
 
-### 6. Zero-Config Mock REST API & Web Dashboard (`junior mock`)
-Spin up a fully-functional REST API server with zero boilerplate:
+### 6. Mock REST API Server (`junior mock`)
+
+Generates a fully functional REST API backed by a JSON store:
+
 ```bash
-# Start server with sample database (or specify custom db.json)
+# Launch with sample database
 junior mock sample/db.json --port 3000
+
+# Options
+junior mock db.json --port 8080 --delay 200 --read-only
 ```
 
-#### What you get automatically:
-* **Full CRUD Endpoints:**
-  * `GET    /api/users` (supports `?page=1&limit=10`, `?q=search`, `?_sort=name&_order=asc`)
-  * `GET    /api/users/:id`
-  * `POST   /api/users` (auto-generates IDs and timestamps)
-  * `PUT    /api/users/:id`
-  * `PATCH  /api/users/:id`
-  * `DELETE /api/users/:id`
-* **Real-time Web Dashboard:** Open `http://localhost:3000/_junior` in your browser.
-* **Chaos Engineering & Network Simulation:**
-  * Latency Slider: simulate 2G/3G networks (0ms - 2500ms delay).
-  * Error Rate: simulate random 500 server crashes to test frontend error boundaries.
-  * Header overrides: pass `x-mock-status: 500` or `x-mock-delay: 1000` per request.
+#### Available Endpoints
+
+For each collection in your JSON file (e.g., `users`, `posts`):
+
+| Method | Route | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/:resource` | Retrieve collection with support for `?q=`, `?page=1&limit=10`, `?_sort=field&_order=asc` |
+| `GET` | `/api/:resource/:id` | Retrieve single item by ID |
+| `POST` | `/api/:resource` | Create new record (auto-assigns ID and timestamps) |
+| `PUT` | `/api/:resource/:id` | Full record update |
+| `PATCH` | `/api/:resource/:id` | Partial record update |
+| `DELETE` | `/api/:resource/:id` | Remove record |
+
+#### Web Dashboard & Chaos Simulation
+
+Open `http://localhost:3000/_junior` in your browser:
+- **Live Request Inspector**: Real-time log of incoming HTTP requests with latency, method, and status codes.
+- **Latency Slider**: Simulates network delay (0–2500ms) to evaluate client loading states.
+- **Chaos Error Rate**: Simulates random 500 internal server errors to verify client error boundaries.
+- **Header Overrides**: Send `x-mock-delay: 1000` or `x-mock-status: 503` for per-request overrides.
 
 ---
 
-## 🧪 Running Automated Tests
+## Testing
 
-Junior includes a comprehensive test suite built with Node's native test runner and Supertest:
+Run the automated test suite:
 
 ```bash
 npm test
 ```
 
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-Feel free to check [issues page](https://github.com/rillardian655/Junior/issues).
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feat/amazing-feature`)
-3. Commit your Changes (`junior commit`)
-4. Push to the Branch (`git push origin feat/amazing-feature`)
-5. Open a Pull Request
+Includes 17 test cases covering the CLI commands, secret scanner regex rules, cheatsheet validation, and Mock API REST operations with Supertest.
 
 ---
 
-## 📄 License
+## Project Structure
 
-Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for more information.
+```
+junior/
+├── bin/
+│   └── junior.js                # CLI executable entrypoint
+├── src/
+│   ├── cli.js                   # Command routing & option definitions
+│   ├── commands/
+│   │   ├── commit.js            # Interactive commit builder
+│   │   ├── scan.js              # Secret scanner command
+│   │   ├── cheat.js             # Cheatsheet lookup command
+│   │   ├── todo.js              # Annotation inspector
+│   │   ├── stats.js             # Repository metrics collector
+│   │   └── mock.js              # Mock server runner
+│   ├── cheats/
+│   │   └── data.js              # Curated cheatsheet dataset
+│   ├── scanner/
+│   │   └── rules.js             # Detection rules & file inspectors
+│   ├── mock/
+│   │   ├── store.js             # JSON file-backed datastore
+│   │   ├── server.js            # Express REST CRUD engine
+│   │   └── dashboard.js         # Embedded web dashboard
+│   └── utils/
+│       ├── git.js               # Git subprocess helpers
+│       └── ui.js                # Formatted terminal output utilities
+├── sample/
+│   └── db.json                  # Sample mock data
+├── test/
+│   ├── cheat.test.js
+│   ├── mock.test.js
+│   └── scan.test.js
+├── package.json
+└── README.md
+```
 
 ---
 
-<div align="center">
-  Crafted with care by <a href="https://github.com/rillardian655">xianly runa</a> 🚀
-</div>
+## License
+
+This project is licensed under the [MIT License](LICENSE).
