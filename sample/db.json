@@ -1,0 +1,117 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alex Pratama",
+      "email": "alex.pratama@example.com",
+      "role": "frontend-dev",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
+      "status": "active",
+      "createdAt": "2026-01-15T08:30:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Jenkins",
+      "email": "sarah.j@example.com",
+      "role": "product-manager",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+      "status": "active",
+      "createdAt": "2026-01-18T10:15:00Z"
+    },
+    {
+      "id": 3,
+      "name": "Budi Santoso",
+      "email": "budi.s@example.com",
+      "role": "backend-dev",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Budi",
+      "status": "inactive",
+      "createdAt": "2026-02-01T14:00:00Z"
+    },
+    {
+      "id": 4,
+      "name": "Elena Rostova",
+      "email": "elena.r@example.com",
+      "role": "qa-engineer",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Elena",
+      "status": "active",
+      "createdAt": "2026-02-10T11:45:00Z"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Mastering Flutter State Management in 2026",
+      "slug": "mastering-flutter-state-management-2026",
+      "content": "A comprehensive deep dive into Riverpod vs Bloc for large-scale mobile apps.",
+      "authorId": 1,
+      "tags": ["flutter", "mobile", "architecture"],
+      "likes": 42,
+      "published": true,
+      "createdAt": "2026-02-12T09:00:00Z"
+    },
+    {
+      "id": 2,
+      "title": "Zero-Config Mock APIs for Agile Teams",
+      "slug": "zero-config-mock-apis-agile-teams",
+      "content": "Why decoupling frontend and backend teams using lightweight mock servers accelerates delivery.",
+      "authorId": 3,
+      "tags": ["api", "dx", "tools"],
+      "likes": 88,
+      "published": true,
+      "createdAt": "2026-02-15T16:20:00Z"
+    },
+    {
+      "id": 3,
+      "title": "Designing Intuitive UI with Tailwind CSS",
+      "slug": "designing-intuitive-ui-tailwind",
+      "content": "Tips and tricks for rapid prototyping and clean design systems.",
+      "authorId": 1,
+      "tags": ["design", "css", "frontend"],
+      "likes": 19,
+      "published": false,
+      "createdAt": "2026-03-01T12:00:00Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "author": "Budi Santoso",
+      "content": "Great explanation! Riverpod feels much simpler for our current use case.",
+      "createdAt": "2026-02-13T09:30:00Z"
+    },
+    {
+      "id": 2,
+      "postId": 2,
+      "author": "Elena Rostova",
+      "content": "Mock APIs saved our QA team dozens of hours during sprint testing.",
+      "createdAt": "2026-02-16T10:00:00Z"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Mechanical Keyboard Pro RGB",
+      "category": "hardware",
+      "price": 89.99,
+      "stock": 15,
+      "rating": 4.8
+    },
+    {
+      "id": 2,
+      "title": "Ergonomic Standing Desk",
+      "category": "furniture",
+      "price": 299.00,
+      "stock": 4,
+      "rating": 4.9
+    },
+    {
+      "id": 3,
+      "title": "Noise Cancelling Headphones",
+      "category": "audio",
+      "price": 149.50,
+      "stock": 0,
+      "rating": 4.6
+    }
+  ]
+}

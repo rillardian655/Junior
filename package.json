@@ -1,0 +1,51 @@
+{
+  "name": "junior-mock-api",
+  "version": "1.0.0",
+  "description": "Zero-config mock REST API server with real-time web dashboard, network simulation, and automatic CRUD generator",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "junior": "./bin/junior.js",
+    "junior-mock": "./bin/junior.js"
+  },
+  "scripts": {
+    "start": "node bin/junior.js start",
+    "dev": "node bin/junior.js start --watch",
+    "test": "node --test test/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rillardian655/Junior.git"
+  },
+  "keywords": [
+    "mock",
+    "api",
+    "rest-api",
+    "fake-data",
+    "junior",
+    "json-server",
+    "chaos-engineering",
+    "dashboard",
+    "developer-tools",
+    "testing"
+  ],
+  "author": "xianly runa <rillardian655@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rillardian655/Junior/issues"
+  },
+  "homepage": "https://github.com/rillardian655/Junior#readme",
+  "dependencies": {
+    "@inquirer/prompts": "^8.7.5",
+    "commander": "^14.0.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
